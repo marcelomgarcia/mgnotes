@@ -4,7 +4,22 @@ Marcelo's notes about everything technical.
 
 ## Devtools
 
-Configuring git to change origin
+### Git
+
+[Initial setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+
+```
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+```
+
+You can view all of your settings and where they are coming from using:
+
+```
+git config --list --show-origin
+```
+
+Change origin from ssh to https
 
 ```
 git remote set-url origin https://gitlab.kaust.edu.sa/garcm0b/libnova_api_eval.git
