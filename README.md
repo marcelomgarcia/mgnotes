@@ -59,3 +59,17 @@ drwxr-xr-x root/root         0 2024-04-21 14:18 certs/
 -rw-r--r-- root/root      4240 2024-04-15 15:41 certs/ssl.pem
 a-garcm0b@lthlibprod:/tmp$
 ```
+
+### LDAP
+
+Searching the LDAP
+
+```
+# Initialize Kerberos cache
+joe@lthlibmig:~$ kinit -a joe
+Password for joed@DOMAIN.EDU:
+# Search LDAP
+joe@lthlibmig:~$ ldapsearch -H ldap://my.ldap.server -LLL -b "DC=KK,DC=EDU,DC=SS" cn=joe
+SASL/GSS-SPNEGO authentication started
+(...)
+```
