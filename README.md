@@ -4,6 +4,18 @@ Marcelo's notes about everything technical.
 
 ## Devtools
 
+### OpenSSL
+
+Generate random passwords with OpenSSL. Use `hex` for a hexadecimal or `base64` for alphanumeric pseudo-random passwords
+
+```
+mgarcia@valinor:~$ openssl rand -base64 16
+dAq2FeDkBNsO+O/AMgA3+A==
+mgarcia@valinor:~$ openssl rand -hex 16
+a35abff0cfab0281a191658b0d046293
+mgarcia@valinor:~$ 
+```
+
 ### Git
 
 [Initial setup](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
