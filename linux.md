@@ -25,3 +25,14 @@ root@lthlibprod:/var/cache/apt/archives# du -sh .
 32K     .
 root@lthlibprod:/var/cache/apt/archives# 
 ```
+
+## Finding Files
+
+Excluding a directory from the search of the `find` command:
+
+```bash
+root@lthlibprod:/home/sftpsap/patron_info# find . -path "./.snapshot" -prune -o -type f -ctime +60
+./Organizations20241230013006.TXT
+./Organizations20241118081310.TXT
+(...)
+```
