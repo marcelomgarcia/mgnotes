@@ -39,6 +39,8 @@ git remote set-url origin https://gitlab.kaust.edu.sa/garcm0b/libnova_api_eval.g
 
 ## Sysadmin
 
+[Configuring Debian 12](debian_post_install.md) system after installation.
+
 ### Tar
 
 Removing a file from inside a `tar` file
