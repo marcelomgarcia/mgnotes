@@ -1,7 +1,8 @@
-# Local Elasticsearch
+Local Elasticsearch
+=================
 
 
-## Elasticsearch Containers
+# Elasticsearch Containers
 
 Starting a local test environment of Elasticsearch and Kibana:
 
@@ -83,7 +84,7 @@ Documents  Downloads  elastic-start-local  Work
 mgarcia@PC-KL-26743:~$
 ```
 
-## Next Steps
+# Next Steps
 
 Documentation of next steps: [https://www.elastic.co/docs/solutions/search/elasticsearch-basics-quickstart](https://www.elastic.co/docs/solutions/search/elasticsearch-basics-quickstart)
 

@@ -1,6 +1,7 @@
-# Linux Administration
+Linux Administration
+===================
 
-## Cleanining Apt Cache
+# Cleaning Apt Cache
 
 Cleaning apt cache is important to [free up space and remove old package files](https://itsfoss.com/clear-apt-cache/) that are no longer needed. 
 
@@ -26,7 +27,7 @@ root@lthlibprod:/var/cache/apt/archives# du -sh .
 root@lthlibprod:/var/cache/apt/archives# 
 ```
 
-## Finding Files
+# Finding Files
 
 Excluding a directory from the search of the `find` command:
 
@@ -38,7 +39,7 @@ root@lthlibprod:/home/sftpsap/patron_info# find . -path "./.snapshot" -prune -o 
 ```
 
 
-## Formating USB
+# Formating USB
 
 Formating USB using `parted` to use [100% of the free space](https://ngelinux.com/how-to-create-full-size-one-partition-using-parted-command-in-linux/).
 

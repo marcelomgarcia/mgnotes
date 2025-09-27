@@ -1,6 +1,7 @@
-# Debian 12 Post Installation
+Debian 12 Post Installation
+========================
 
-## Sudo
+# Sudo
 
 Adding user to `sudo` group is not enough, but it's the first step
 
@@ -19,7 +20,7 @@ Press <enter> to keep the current choice[*], or type selection number: 3
 root@arda:~# visudo
 ```
 
-## Jetbrains Mono
+# Jetbrains Mono
 
 Download [Jetbrains mono](https://www.jetbrains.com/lp/mono/) and extract the _zip_ file
 
@@ -27,13 +28,13 @@ Download [Jetbrains mono](https://www.jetbrains.com/lp/mono/) and extract the _z
 mgarcia@arda:~$ unzip JetBrainsMono-2.304.zip -d ~/.local/share/fonts
 ```
 
-## Gnome Extensions
+# Gnome Extensions
 
 ```
 mgarcia@arda:~$ sudo apt install gnome-shell-extension-manager -y
 ```
 
-## Build Essentias
+# Build Essentias
 
 Install development environment
 
@@ -42,7 +43,7 @@ mgarcia@arda:~$ sudo apt install build-essential dkms linux-headers-$(uname -r)
 ```
 
 
-## restricted-extras
+# restricted-extras
 
 Codes for multimedia
 
@@ -50,13 +51,13 @@ Codes for multimedia
 sudo apt install ttf-mscorefonts-installer rar unrar libavcodec-extra gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi
 ```
 
-## Microsoft Fonts Compatibility
+# Microsoft Fonts Compatibility
 
 ```
 sudo apt install fonts-crosextra-carlito fonts-crosextra-caladea
 ```
 
-## Enable GNOME Extensions
+# Enable GNOME Extensions
 
 Visit the URL and enable the extension
 
@@ -65,7 +66,7 @@ https://extensions.gnome.org/
 ```
 
 
-## Extra packages
+# Extra packages
 
 ```
 mgarcia@arda:~$ sudo apt install curl tree ncal 
@@ -79,7 +80,7 @@ mgarcia@arda:~$ sudo apt install tmux
 ```
 
 
-## VScode
+# VScode
 
 Download [Visual Studio Code](https://code.visualstudio.com/):
 
@@ -87,7 +88,7 @@ Download [Visual Studio Code](https://code.visualstudio.com/):
 mgarcia@arda:~/Downloads$ sudo apt install ./code_1.92.2-1723660989_amd64.deb 
 ```
 
-## Virtualbox
+# Virtualbox
 
 Download [virtualbox](https://www.virtualbox.org/wiki/Downloads):
 
@@ -95,7 +96,7 @@ Download [virtualbox](https://www.virtualbox.org/wiki/Downloads):
 mgarcia@arda:~/Downloads$ sudo apt install ./virtualbox-7.0_7.0.20-163906~Debian~bookworm_amd64.deb 
 ```
 
-## Vagrant
+# Vagrant
 
 Install [Vagrant via Debian repository](https://developer.hashicorp.com/vagrant/install?product_intent=vagrant#linux):
 
@@ -105,7 +106,7 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://
 sudo apt update && sudo apt install vagrant
 ```
 
-## Docker Engine
+# Docker Engine
 
 Installing [Docker Engine via apt repository](https://docs.docker.com/engine/install/debian/#install-using-the-repository) 
 
@@ -127,7 +128,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-### Testing installation
+## Testing installation
 
 ```
 mgarcia@arda:~$ sudo docker run hello-world
@@ -233,7 +234,7 @@ set -g mode-keys vi
 set -g update-environment "DISPLAY WINDOWID SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION"
 ```
 
-## Git Config
+# Git Config
 
 [Initial config](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
 
