@@ -1,6 +1,14 @@
 Linux Administration
 ===================
 
+# Firewall 
+
+Configuring the `ufw` firewall [to allow DNS](https://www.cyberciti.biz/faq/howto-open-dns-port-53-using-ufw-ubuntu-debian/) traffic:
+
+```
+sudo ufw allow dns
+```
+
 # Cleaning Apt Cache
 
 Cleaning apt cache is important to [free up space and remove old package files](https://itsfoss.com/clear-apt-cache/) that are no longer needed. 
