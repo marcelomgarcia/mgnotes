@@ -32,12 +32,12 @@ Showing the tables in the database
 ```
 sqlite> .tables
 directors  movies
-sqlite> describe directors
+sqlite>
 ```
 
 Showing the [schema of the tables](https://www.sqlitetutorial.net/sqlite-describe-table/)
 
-```
+```sql
 sqlite> .schema directors
 CREATE TABLE IF NOT EXISTS "directors" (
         "id"    INTEGER NOT NULL,
@@ -67,7 +67,7 @@ sqlite>
 
 Querying the table schema from the `sqlite_schema` table:
 
-```
+```sql
 sqlite> SELECT sql FROM sqlite_schema WHERE name = 'directors';
 sql
 ---------------------------------------
