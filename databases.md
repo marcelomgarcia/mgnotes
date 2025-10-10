@@ -78,3 +78,53 @@ CREATE TABLE "directors" (
 )
 sqlite>
 ```
+
+## Exporting
+
+Exporting the SQLite database as [CSV](https://www.sqlitetutorial.net/sqlite-export-csv/):
+
+```
+mgarcia@arda:~/Work/MovieClubSched$ sqlite3 movie_club.db
+SQLite version 3.45.1 2024-01-30 16:01:20
+Enter ".help" for usage hints.
+sqlite> .headers on
+sqlite> .mode csv
+sqlite> .output movies.csv
+sqlite> SELECT title,director_id, year, country, url, screen_date, host, attendance FROM movies;
+sqlite> .output stdout
+sqlite> SELECT title,director_id, year, country, url, screen_date, host, attendance FROM movies;
+title,director_id,year,country,url,screen_date,host,attendance
+"The Godfather",1,1972,USA,https://www.imdb.com/title/tt0068646/,2025-02-07,Marcelo,0
+(...)
+```
+
+We save the output of the `SELECT` command to a file with the dot-command `.output movies.csv` and changed back to the screeen with `.output stdout.`
+
+### Script
+
+SQL script to export the database as a CSV file:
+
+```
+mgarcia@arda:~/Work/MovieClubSched$ cat export_dirs.sql
+.headers on
+.mode csv
+.output directors.csv
+SELECT name FROM directors;
+```
+
+Then run the script:
+
+```
+mgarcia@arda:~/Work/MovieClubSched$ sqlite3 movie_club.db < export_dirs.sql
+```
+
+And check the result:
+
+```
+mgarcia@arda:~/Work/MovieClubSched$ more directors.csv
+name
+"Francis Ford Coppola"
+"Terry Gilliam"
+(...)
+```
+
