@@ -6,7 +6,23 @@ Linux Administration
 Configuring the `ufw` firewall [to allow DNS](https://www.cyberciti.biz/faq/howto-open-dns-port-53-using-ufw-ubuntu-debian/) traffic:
 
 ```
-sudo ufw allow dns
+garcm0b@KW20207:~$ sudo ufw allow 53/tcp comment 'Open port DNS tcp port 53'
+Rule added
+garcm0b@KW20207:~$ sudo ufw allow 53/udp comment 'Open port DNS udp port 53'
+Rule added
+garcm0b@KW20207:~$
+garcm0b@KW20207:~$ sudo ufw status verbose
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+11434                      ALLOW IN    Anywhere
+22/tcp (OpenSSH)           ALLOW IN    Anywhere
+53/tcp                     ALLOW IN    Anywhere                   # Open port DNS tcp port 53
+53/udp                     ALLOW IN    Anywhere                   # Open port DNS udp port 53
 ```
 
 # Cleaning Apt Cache
