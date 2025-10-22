@@ -235,3 +235,22 @@ mgarcia@PC-KL-26743:~$ head -n 2 /tmp/source_data.txt
 rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
+
+# DuckDB
+
+Accessing a MySQL via DuckDB. 
+
+```
+D attach 'host=localhost user=irts port=3336 database=test_irts password=XXXX' as mysqldb (type mysql);
+D
+D SELECT rowID,source FROM mysqldb.test_irts.sourceData LIMIT 1;
+┌────────┬─────────┐
+│ rowID  │ source  │
+│ int32  │ varchar │
+├────────┼─────────┤
+│ 145347 │ arxiv   │
+└────────┴─────────┘
+D .quit
+mgarcia@PC-KL-26743:~$
+```
+
