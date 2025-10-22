@@ -223,3 +223,15 @@ mysql> SELECT timestamp,message FROM messages ORDER BY timestamp LIMIT 5;
 ## Conclusion
 
 For production environments and scalability, always prefer the range comparison method. It's the professional choice that will perform well even as your data grows.
+
+## Saving Output to File
+
+Saving the output of a `SELECT` command to a file:
+
+```
+mgarcia@PC-KL-26743:~$ mysql -h localhost -P 3336 -u irts -p test_irts -e "SELECT rowID,added,sourceData FROM sourceData LIMIT 1;" |tee /tmp/source_data.txt
+mgarcia@PC-KL-26743:~$
+mgarcia@PC-KL-26743:~$ head -n 2 /tmp/source_data.txt
+rowID   added   sourceData
+1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
+```
