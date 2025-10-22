@@ -254,3 +254,23 @@ D .quit
 mgarcia@PC-KL-26743:~$
 ```
 
+Describing a table
+
+```
+D describe mysqldb.prod_irts.sourceData;
+┌─────────────────┬──────────────────────────┬─────────┬─────────┬─────────┬─────────┐
+│   column_name   │       column_type        │  null   │   key   │ default │  extra  │
+│     varchar     │         varchar          │ varchar │ varchar │ varchar │ varchar │
+├─────────────────┼──────────────────────────┼─────────┼─────────┼─────────┼─────────┤
+│ rowID           │ INTEGER                  │ NO      │ NULL    │ NULL    │ NULL    │
+│ source          │ VARCHAR                  │ NO      │ NULL    │ NULL    │ NULL    │
+│ idInSource      │ VARCHAR                  │ NO      │ NULL    │ NULL    │ NULL    │
+│ sourceData      │ VARCHAR                  │ NO      │ NULL    │ NULL    │ NULL    │
+│ format          │ VARCHAR                  │ NO      │ NULL    │ NULL    │ NULL    │
+│ added           │ TIMESTAMP WITH TIME ZONE │ NO      │ NULL    │ NULL    │ NULL    │
+│ deleted         │ TIMESTAMP WITH TIME ZONE │ YES     │ NULL    │ NULL    │ NULL    │
+│ replacedByRowID │ INTEGER                  │ YES     │ NULL    │ NULL    │ NULL    │
+└─────────────────┴──────────────────────────┴─────────┴─────────┴─────────┴─────────┘
+D
+```
+
