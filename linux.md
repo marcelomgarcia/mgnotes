@@ -72,6 +72,20 @@ root@lthlibprod:/home/sftpsap/patron_info# find . -path "./.snapshot" -prune -o 
 (...)
 ```
 
+# SSH Tunnel
+
+Accessing the MySQL database via SSH tunnel when the port `3306` is blocked by the firewall.
+
+```
+mgarcia@PC-KL-26743:~$ ssh -L 3336:localhost:3306 db
+mgarcia@PC-KL-26743:~$ mysql -h localhost -P 3336 -u irts -p test_irts
+Enter password:
+Reading table information for completion of table and column names
+(...)
+
+MySQL [test_irts]>
+```
+
 
 # Formating USB
 
