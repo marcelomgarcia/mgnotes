@@ -51,6 +51,16 @@ root@lthlibprod:/var/cache/apt/archives# du -sh .
 root@lthlibprod:/var/cache/apt/archives# 
 ```
 
+# Umask
+
+[Setting the `umask`](https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html) for **all** users on the system (Ubuntu).
+
+```
+mgarcia@valinor:~$ cat /etc/profile.d/set-umask-for-all-users.sh
+umask 022
+mgarcia@valinor:~$
+```
+
 # Finding Files
 
 Excluding a directory from the search of the `find` command:
