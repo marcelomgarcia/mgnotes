@@ -77,3 +77,31 @@ mgarcia@PC-KL-26743:~/Work/clamdock$ gh repo create kaust-library-systems/IRTSv2
   https://github.com/kaust-library-systems/IRTSv2
 mgarcia@PC-KL-26743:~/Work/clamdock$
 ```
+
+# UV
+
+## Creating the Virtual Environment
+
+I prefer to have the virtual environment hidden, so to create the a `.venv` directory:
+
+```
+mgarcia@PC-KL-26743:~/Work/pyIRTS$ uv venv .venv
+Using CPython 3.13.6
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+mgarcia@PC-KL-26743:~/Work/pyIRTS$
+```
+
+## Requiments
+
+To add requirements to the virtual environment
+
+```
+mgarcia@PC-KL-26743:~/Work/pyIRTS$ uv pip install -r requirements.txt
+Resolved 17 packages in 3.26s
+Prepared 6 packages in 3.08s
+Installed 17 packages in 40ms
+ + certifi==2025.10.5
+ + charset-normalizer==3.4.4
+ (...)
+```
