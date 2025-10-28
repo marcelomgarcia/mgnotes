@@ -132,7 +132,7 @@ name
 
 Selecting Rows by Date from TIMESTAMP Field
 
-## Question
+## Selecting Rows from a TIMESTAMP
 How can I select all rows for a specific date (2018-07-08) from a TIMESTAMP field in MySQL 8?
 
 ## Table Structure
@@ -175,9 +175,9 @@ rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
 
-# Docker MySQL
+## Docker MySQL
 
-## Image
+### Image
 
 MySQL docker image:
 
@@ -189,7 +189,7 @@ hello-world   latest            74cc54e27dc4   9 months ago   10.1kB
 garcm0b@KW20207:/data/databases/zipped$
 ```
 
-## Secrets
+### Secrets
 
 Define a file with variables used by MySQL container:
 
@@ -206,7 +206,7 @@ secret_password
 garcm0b@KW20207:~$
 ```
 
-## Initializing a New Instance
+### Initializing a New Instance
 
 To initialize the new container with a MySQL dump file, start the container mount the directory with the dump file binded to the docker folder `/docker-entrypoint-initdb.d.` The installation of MySQL are mounted to another directory because we ingestion of the dump file was reaching the limit of Docker volume. The initialization of the container require extra parameters because the the dump file is very large (44GB) and the machine runnig Docker has high specs.
 
@@ -273,7 +273,7 @@ mysql>
 
 
 
-## Reference
+### Reference
 [https://hub.docker.com/\_/mysql/](https://hub.docker.com/_/mysql/)
 
 
