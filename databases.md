@@ -163,67 +163,6 @@ WHERE timestamp >= '2018-07-08 00:00:00'
 - Very efficient for large tables
 - No risk of missing microseconds at day boundary
 
-## Alternative Solutions
-
-### 1. Using DATE() Function (Simpler but Slower)
-```sql
-SELECT * FROM messages 
-WHERE DATE(timestamp) = '2018-07-08';
-```
-
-**Pros:** Clean and readable  
-**Cons:** Cannot use index on `timestamp` - causes a full table scan
-
-### 2. Using CAST()
-```sql
-SELECT * FROM messages 
-WHERE CAST(timestamp AS DATE) = '2018-07-08';
-```
-
-Similar performance characteristics to `DATE()`.
-
-### 3. Using BETWEEN
-```sql
-SELECT * FROM messages 
-WHERE timestamp BETWEEN '2018-07-08 00:00:00' AND '2018-07-08 23:59:59';
-```
-
-**Note:** Be careful with `BETWEEN` - it's inclusive on both ends, so you might miss records at exactly `23:59:59.999999`. The first solution using `< '2018-07-09'` is safer.
-
-## Performance Tips
-
-1. **Add an index if not present:**
-   ```sql
-   CREATE INDEX idx_timestamp ON messages(timestamp);
-   ```
-
-2. **Always use the range comparison method for large tables**
-
-3. **Use EXPLAIN to verify the query uses the index:**
-   ```sql
-   EXPLAIN SELECT * FROM messages 
-   WHERE timestamp >= '2018-07-08 00:00:00' 
-     AND timestamp < '2018-07-09 00:00:00';
-   ```
-
-## Sample Data
-```
-mysql> SELECT timestamp,message FROM messages ORDER BY timestamp LIMIT 5;
-+---------------------+---------------------------------------------------------------------------------------------+
-| timestamp           | message                                                                                     |
-+---------------------+---------------------------------------------------------------------------------------------+
-| 2018-07-08 01:24:50 | repository: 18143 new items, 0 updated items, 0 deleted items, 18585 total items.           |
-| 2018-07-08 11:43:13 | repository: 13 new items, 0 updated items, 0 deleted items, 18585 total items.              |
-| 2018-07-08 17:29:32 | repository: 0 new items, 0 updated items, 0 deleted items, 1 total items. - Error count: 8 |
-| 2018-07-08 17:34:37 | repository: 0 new items, 0 updated items, 0 deleted items, 1 total items. - Error count: 8 |
-| 2018-07-08 18:00:20 | repository: 0 new items, 0 updated items, 0 deleted items, 1 total items. - Error count: 8 |
-+---------------------+---------------------------------------------------------------------------------------------+
-```
-
-## Conclusion
-
-For production environments and scalability, always prefer the range comparison method. It's the professional choice that will perform well even as your data grows.
-
 ## Saving Output to File
 
 Saving the output of a `SELECT` command to a file:
@@ -235,6 +174,108 @@ mgarcia@PC-KL-26743:~$ head -n 2 /tmp/source_data.txt
 rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
+
+# Docker MySQL
+
+## Image
+
+MySQL docker image:
+
+```
+garcm0b@KW20207:/data/databases/zipped$ docker image ls
+REPOSITORY    TAG               IMAGE ID       CREATED        SIZE
+mysql         8.0.43-bookworm   30e5fef766c9   4 weeks ago    610MB
+hello-world   latest            74cc54e27dc4   9 months ago   10.1kB
+garcm0b@KW20207:/data/databases/zipped$
+```
+
+## Secrets
+
+Define a file with variables used by MySQL container:
+
+```
+garcm0b@KW20207:~$ vim .env_mysql_docker
+```
+
+Then read the variables to the shell environment
+
+```
+garcm0b@KW20207:~$ export $(cat .env_mysql_docker | xargs)
+garcm0b@KW20207:~$ echo $MYSQL_ROOT_PASSWORD
+secret_password
+garcm0b@KW20207:~$
+```
+
+## Initializing a New Instance
+
+To initialize the new container with a MySQL dump file, start the container mount the directory with the dump file binded to the docker folder `/docker-entrypoint-initdb.d.` The installation of MySQL are mounted to another directory because we ingestion of the dump file was reaching the limit of Docker volume. The initialization of the container require extra parameters because the the dump file is very large (44GB) and the machine runnig Docker has high specs.
+
+```
+garcm0b@KW20207:/data/databases/test$ docker run \
+  --rm \
+  --name prod_irts \
+  --cpus="32" \
+  --memory="64g" \
+  --memory-swap="64g" \
+  -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+  -e MYSQL_INITDB_SKIP_TZINFO=1 \
+  --mount type=bind,src=/data/databases/test,dst=/docker-entrypoint-initdb.d \
+  --volume /data/databases/mysql_data:/var/lib/mysql \
+  --detach \
+  mysql:8.0.43-bookworm \
+  --innodb-buffer-pool-size=48G \
+  --innodb-log-file-size=2G \
+  --innodb-flush-log-at-trx-commit=2 \
+  --innodb-flush-method=O_DIRECT \
+  --max-allowed-packet=1G \
+  --innodb-write-io-threads=16 \
+  --innodb-read-io-threads=16
+3357ea920ee28548d301d58efa6ff784d303352133ec120ac3d11ba04d14a715
+garcm0b@KW20207:/data/databases/test$
+```
+
+Accessing the database
+
+```
+garcm0b@KW20207:/data/databases/mysql_data$ docker exec -it \
+> prod_irts mysql -u root -p prod_irts
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(...)
+
+mysql> show tables;
++---------------------+
+| Tables_in_prod_irts |
++---------------------+
+| deletedMetadata     |
+| deletedSourceData   |
+| mappings            |
+| messages            |
+| metadata            |
+| sourceData          |
+| transformations     |
+| users               |
++---------------------+
+8 rows in set (0.01 sec)
+
+mysql> select count(*) from messages;
++----------+
+| count(*) |
++----------+
+|  7109425 |
++----------+
+1 row in set (5.35 sec)
+
+mysql>
+```
+
+
+
+## Reference
+[https://hub.docker.com/\_/mysql/](https://hub.docker.com/_/mysql/)
+
 
 # DuckDB
 
