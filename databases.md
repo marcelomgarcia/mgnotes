@@ -130,12 +130,11 @@ name
 
 # MySQL
 
-Selecting Rows by Date from TIMESTAMP Field
+## Selecting Rows from a TIMESTAMP Field
 
-## Selecting Rows from a TIMESTAMP
 How can I select all rows for a specific date (2018-07-08) from a TIMESTAMP field in MySQL 8?
 
-## Table Structure
+### Table Structure
 ```
 mysql> DESCRIBE messages;
 +-----------+--------------+------+-----+-------------------+-------------------+
@@ -149,7 +148,7 @@ mysql> DESCRIBE messages;
 +-----------+--------------+------+-----+-------------------+-------------------+
 ```
 
-## Best Solution (Index-Friendly)
+### Best Solution (Index-Friendly)
 
 ```sql
 SELECT * FROM messages 
