@@ -270,6 +270,19 @@ mysql> select count(*) from messages;
 mysql>
 ```
 
+### Importing SQL Dump File
+
+In case necessary to import more databases after the initialization, import the new database as a restoring a regular MySQL dump. Probably it will be necessary to unzip the dump file
+
+```
+garcm0b@KW20207:/data/databases/zipped$ gzip -dc prod_ioi_2025-10-26_06h25m.Sunday.sql.gz > ../test/prod_ioi_2025-10-26_06h25m.Sunday.sql
+garcm0b@KW20207:/data/databases/zipped$
+garcm0b@KW20207:/data/databases/zipped$ cd ../test/
+garcm0b@KW20207:/data/databases/test$ docker exec -i prod_irts sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < prod_ioi_2025-10-26_06h25m.Sunday.sql
+mysql: [Warning] Using a password on the command line interface can be insecure.
+garcm0b@KW20207:/data/databases/test$
+```
+
 
 
 ### Reference
