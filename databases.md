@@ -210,30 +210,55 @@ garcm0b@KW20207:~$
 To initialize the new container with a MySQL dump file, start the container mount the directory with the dump file binded to the docker folder `/docker-entrypoint-initdb.d.` The installation of MySQL are mounted to another directory because we ingestion of the dump file was reaching the limit of Docker volume. The initialization of the container require extra parameters because the the dump file is very large (44GB) and the machine runnig Docker has high specs.
 
 ```
-garcm0b@KW20207:/data/databases/test$ docker run \
-  --rm \
-  --name prod_irts \
-  --cpus="32" \
-  --memory="64g" \
-  --memory-swap="64g" \
-  -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
-  -e MYSQL_INITDB_SKIP_TZINFO=1 \
-  --mount type=bind,src=/data/databases/test,dst=/docker-entrypoint-initdb.d \
-  --volume /data/databases/mysql_data:/var/lib/mysql \
-  --detach \
-  mysql:8.0.43-bookworm \
-  --innodb-buffer-pool-size=48G \
-  --innodb-log-file-size=2G \
-  --innodb-flush-log-at-trx-commit=2 \
-  --innodb-flush-method=O_DIRECT \
-  --max-allowed-packet=1G \
-  --innodb-write-io-threads=16 \
-  --innodb-read-io-threads=16
-3357ea920ee28548d301d58efa6ff784d303352133ec120ac3d11ba04d14a715
-garcm0b@KW20207:/data/databases/test$
+docker run \
+--rm \
+--name prod_irts \
+--cpus="32" \
+--memory="64g" \
+--memory-swap="64g" \
+-e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+-e MYSQL_INITDB_SKIP_TZINFO=1 \
+--mount type=bind,src=/data/databases/test,dst=/docker-entrypoint-initdb.d \
+--volume /data/databases/mysql_data:/var/lib/mysql \
+--detach \
+mysql:8.0.43-bookworm \
+--innodb-buffer-pool-size=48G \
+--innodb-log-file-size=2G \
+--innodb-flush-log-at-trx-commit=2 \
+--innodb-flush-method=O_DIRECT \
+--max-allowed-packet=1G \
+--innodb-write-io-threads=16 \
+--innodb-read-io-threads=16
 ```
 
-Accessing the database
+### Starting the Database
+
+Once the database is initialized, we will start it using a slightly different set of parameters
+
+
+```
+docker run \
+  --rm \
+  --name prod_irts \
+  --cpus="16" \
+  --memory="32g" \
+  --memory-swap="32g" \
+  -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+  --volume /data/databases/mysql_data:/var/lib/mysql \
+  -p 3336:3306 \
+  --detach \
+  mysql:8.0.43-bookworm \
+  --innodb-buffer-pool-size=24G \
+  --innodb-flush-log-at-trx-commit=1 \
+  --innodb-flush-method=O_DIRECT \
+  --max-allowed-packet=256M \
+  --innodb-write-io-threads=8 \
+  --innodb-read-io-threads=8
+```
+
+### Accessing the Database
+
+Accessing the database inside the container:
 
 ```
 garcm0b@KW20207:/data/databases/mysql_data$ docker exec -it \
@@ -244,30 +269,18 @@ You can turn off this feature to get a quicker startup with -A
 
 (...)
 
-mysql> show tables;
-+---------------------+
-| Tables_in_prod_irts |
-+---------------------+
-| deletedMetadata     |
-| deletedSourceData   |
-| mappings            |
-| messages            |
-| metadata            |
-| sourceData          |
-| transformations     |
-| users               |
-+---------------------+
-8 rows in set (0.01 sec)
-
-mysql> select count(*) from messages;
-+----------+
-| count(*) |
-+----------+
-|  7109425 |
-+----------+
-1 row in set (5.35 sec)
-
 mysql>
+```
+
+Or you can access the container with the `mysql` client specifying the protocol and port to the container:
+
+```
+$ mysql -h localhost --protocol=tcp --port=3336 -u root -p prod_irts
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+(...)
 ```
 
 ### Importing SQL Dump File
