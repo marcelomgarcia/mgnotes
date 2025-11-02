@@ -78,6 +78,39 @@ mgarcia@PC-KL-26743:~/Work/clamdock$ gh repo create kaust-library-systems/IRTSv2
 mgarcia@PC-KL-26743:~/Work/clamdock$
 ```
 
+## Populating a Repository
+
+It's possible to create a [GitHub repository from an existing local repository](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-with-github-cli)  with the command `gh repo create,` and choose to option local repository
+
+```
+garcm0b@KW20207:~/Work/repo2rdi$ gh repo create
+? What would you like to do? Push an existing local repository to github.com
+? Path to local repository .
+? Repository name repo2rdi
+? Repository owner kaust-library-systems
+? Description Print tables in the database
+? Visibility Public
+✓ Created repository kaust-library-systems/repo2rdi on github.com
+  https://github.com/kaust-library-systems/repo2rdi
+? Add a remote? Yes
+? What should the new remote be called? origin
+✓ Added remote https://github.com/kaust-library-systems/repo2rdi.git
+? Would you like to push commits from the current branch to "origin"? Yes
+Enumerating objects: 25, done.
+Counting objects: 100% (25/25), done.
+Delta compression using up to 128 threads
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (25/25), 3.28 KiB | 840.00 KiB/s, done.
+Total 25 (delta 7), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (7/7), done.
+To https://github.com/kaust-library-systems/repo2rdi.git
+ * [new branch]      HEAD -> master
+branch 'master' set up to track 'origin/master'.
+✓ Pushed commits to https://github.com/kaust-library-systems/repo2rdi.git
+garcm0b@KW20207:~/Work/repo2rdi$
+```
+
+
 # UV
 
 ## Creating the Virtual Environment
