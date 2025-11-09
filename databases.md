@@ -176,7 +176,7 @@ rowID   added   sourceData
 
 ## List Users
 
-List the users of the MySQL instance:
+List the [users](https://www.mysqltutorial.org/mysql-administration/mysql-show-users/) of the MySQL instance:
 
 ```
 mysql> use mysql;
@@ -212,7 +212,7 @@ mysql> select user,host,account_locked,password_expired from user;
 
 ## Adding User
 
-Adding and granting permissions to a user in the database
+Adding and granting permissions to a [user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) in the database
 
 ```
 mysql> CREATE USER 'irts'@'localhost' IDENTIFIED BY 'my-passwd';
