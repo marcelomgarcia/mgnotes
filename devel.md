@@ -110,6 +110,13 @@ branch 'master' set up to track 'origin/master'.
 garcm0b@KW20207:~/Work/repo2rdi$
 ```
 
+# Env File in Bash
+
+Reading a `.env` file in Bash:
+
+```bash
+export $(cat .env)
+```
 
 # UV
 
