@@ -174,6 +174,43 @@ rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
 
+## List Users
+
+List the users of the MySQL instance:
+
+```
+mysql> use mysql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select user from user;
++------------------+
+| user             |
++------------------+
+| root             |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
++------------------+
+5 rows in set (0.00 sec)
+
+mysql> select user,host,account_locked,password_expired from user;
++------------------+-----------+----------------+------------------+
+| user             | host      | account_locked | password_expired |
++------------------+-----------+----------------+------------------+
+| root             | %         | N              | N                |
+| mysql.infoschema | localhost | Y              | N                |
+| mysql.session    | localhost | Y              | N                |
+| mysql.sys        | localhost | Y              | N                |
+| root             | localhost | N              | N                |
++------------------+-----------+----------------+------------------+
+5 rows in set (0.00 sec)
+
+```
+
+
 ## Docker MySQL
 
 ### Image
