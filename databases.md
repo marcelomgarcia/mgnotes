@@ -210,6 +210,77 @@ mysql> select user,host,account_locked,password_expired from user;
 
 ```
 
+## Adding User
+
+Adding and granting permissions to a user in the database
+
+```
+mysql> CREATE USER 'irts'@'localhost' IDENTIFIED BY 'my-passwd';
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE USER 'irts'@'%' IDENTIFIED BY 'my-passwd';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> quit;
+Bye
+garcm0b@KW20207:~/Work/IRTSv2/updates$
+```
+
+Creating the user is not enough for him to have access to the database:
+
+```
+garcm0b@KW20207:~/Work/IRTSv2/updates$ mysql -h localhost --protocol=tcp --port=3336 -u irts -p prod_irts
+Enter password:
+ERROR 1044 (42000): Access denied for user 'irts'@'%' to database 'prod_irts'
+garcm0b@KW20207:~/Work/IRTSv2/updates$
+```
+
+So we need to grant permissions to the user:
+
+```
+mysql> GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'irts'@'localhost' WITH GRANT OPTION;
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> flush privileges
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'irts'@'%' WITH GRANT OPTION;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> show grants for 'irts'@'%';
++----------------------------------------------------------------------------------------------------------------------+
+| Grants for irts@%                                                                                                    |
++----------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, REFERENCES, ALTER ON *.* TO `irts`@`%` WITH GRANT OPTION |
++----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> exit;
+Bye
+```
+
+Testing the user
+
+```
+garcm0b@KW20207:~/Work/IRTSv2/updates$ mysql -h localhost --protocol=tcp --port=3336 -u irts -p prod_irts
+Enter password:
+Reading table information for completion of table and column names
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.43 MySQL Community Server - GPL
+(...)
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> quit;
+Bye
+garcm0b@KW20207:~/Work/IRTSv2/updates$
+```
 
 ## Docker MySQL
 
