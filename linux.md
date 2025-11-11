@@ -93,8 +93,20 @@ MySQL [test_irts]>
 Troubleshooting Multipass [authentication error](https://documentation.ubuntu.com/multipass/latest/how-to-guides/customise-multipass/authenticate-clients-with-the-multipass-service/):
 
 ```
-cat ~/snap/multipass/current/data/multipass-client-certificate/multipass_cert.pem | sudo tee -a /var/snap/multipass/common/data/multipassd/authenticated-certs/multipass_client_certs.pem > /dev/null
-snap restart multipass
+garcm0b@KW20207:~/Work/IRTSv2/updates$ multipass list
+list failed: The client is not authenticated with the Multipass service.
+Please use 'multipass authenticate' before proceeding.
+garcm0b@KW20207:~/Work/IRTSv2/updates$ 
+garcm0b@KW20207:~/Work/IRTSv2/updates$ sudo cat ~/snap/multipass/current/data/multipass-client-certificate/multipass_cert.pem | sudo tee -a /var/snap/multipass/common/data/multipassd/authenticated-certs/multipass_client_certs.pem > /dev/null
+garcm0b@KW20207:~/Work/IRTSv2/updates$
+garcm0b@KW20207:~/Work/IRTSv2/updates$ sudo snap restart multipass
+2025-11-11T05:45:53Z INFO Waiting for "snap.multipass.multipassd.service" to stop.
+Restarted.
+garcm0b@KW20207:~/Work/IRTSv2/updates$
+garcm0b@KW20207:~/Work/IRTSv2/updates$ multipass list
+Name                    State             IPv4             Image
+btrix                   Stopped           --               Ubuntu 24.04 LTS
+garcm0b@KW20207:~/Work/IRTSv2/updates$
 ```
 
 # Formating USB
