@@ -282,6 +282,14 @@ Bye
 garcm0b@KW20207:~/Work/IRTSv2/updates$
 ```
 
+## Performance Monitoring
+
+Tools and docs to monitor performance of MySQL database:
+
+* [MySQL Performance Monitoring: Best Practices](https://www.percona.com/blog/mysql-performance-monitoring-best-practices/)
+* [How to Monitor MySQL Database Performance](https://docs.digitalocean.com/products/databases/mysql/how-to/monitor-databases/)
+* [How To Use Mytop to Monitor MySQL Performance](https://www.digitalocean.com/community/tutorials/how-to-use-mytop-to-monitor-mysql-performance)
+
 ## Docker MySQL
 
 ### Image
