@@ -1,11 +1,12 @@
+set-option -sa terminal-overrides ",xterm*:Tc"
 # remap prefix from 'C-b' to 'C-a'
 unbind C-b
 set-option -g prefix C-a
 bind-key C-a send-prefix
 
 # split panes using | and -
-bind | split-window -h
-bind - split-window -v
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
 unbind '"'
 unbind %
 
@@ -26,14 +27,14 @@ bind m swapp -s 0 -t 1
 bind e attach -d
 bind C-a last-window
 
-# Set buffer size
-set-option -g history-limit 100000
-
 # don't rename windows automatically
 set-option -g allow-rename off
 
 # VI binging
 set -g mode-keys vi
+
+# Buffer size
+set-option -g history-limit 10000
 
 # Environment
 set -g update-environment "DISPLAY WINDOWID SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION"
