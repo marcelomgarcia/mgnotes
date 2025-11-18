@@ -122,14 +122,22 @@ export $(cat .env)
 
 ## Creating the Virtual Environment
 
-I prefer to have the virtual environment hidden, so to create the a `.venv` directory:
+I prefer to have the virtual environment visible, so to create the a `venv` directory:
 
 ```
-mgarcia@PC-KL-26743:~/Work/pyIRTS$ uv venv .venv
-Using CPython 3.13.6
-Creating virtual environment at: .venv
-Activate with: source .venv/bin/activate
-mgarcia@PC-KL-26743:~/Work/pyIRTS$
+garcm0b@KW20207:~/Work/etd_rag_pipeline$ uv venv venv --prompt etd_rag
+Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
+Creating virtual environment at: venv
+Activate with: source venv/bin/activate
+garcm0b@KW20207:~/Work/etd_rag_pipeline$
+```
+
+Activating the enviroment as a simple test:
+
+```
+garcm0b@KW20207:~/Work/etd_rag_pipeline$ source venv/bin/activate
+(etd_rag) garcm0b@KW20207:~/Work/etd_rag_pipeline$ deactivate
+garcm0b@KW20207:~/Work/etd_rag_pipeline$
 ```
 
 ## Requiments
