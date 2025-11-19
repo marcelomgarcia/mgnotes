@@ -174,6 +174,43 @@ rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
 
+## Database Size
+
+Printing the size of the databases in MB:
+
+```
+mysql> select table_schema "DB Name", ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "DB size in MB" FROM information_schema.tables GROUP BY table_schema;
++--------------------+---------------+
+| DB Name            | DB size in MB |
++--------------------+---------------+
+| information_schema |           0.0 |
+| mysql              |           2.7 |
+| performance_schema |           0.0 |
+| prod_doiMinter     |         622.3 |
+| prod_ioi           |        3046.1 |
+| prod_irts          |       83324.5 |
+| prod_repository    |         828.9 |
+| sys                |           0.0 |
++--------------------+---------------+
+8 rows in set (3.05 sec)
+
+mysql>
+```
+
+## Table Size
+
+Finding the [size of a table](https://stackoverflow.com/questions/9620198/how-can-i-get-the-sizes-of-the-tables-of-a-mysql-database):
+
+```
+mysql> SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = "prod_irts"  AND table_name = "deletedMetadata";
++-----------------+------------+
+| Table           | Size in MB |
++-----------------+------------+
+| deletedMetadata |   14531.81 |
++-----------------+------------+
+1 row in set (0.00 sec)
+```
+
 ## List Users
 
 List the [users](https://www.mysqltutorial.org/mysql-administration/mysql-show-users/) of the MySQL instance:
