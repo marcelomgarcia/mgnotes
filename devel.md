@@ -110,6 +110,27 @@ branch 'master' set up to track 'origin/master'.
 garcm0b@KW20207:~/Work/repo2rdi$
 ```
 
+# Python
+
+## File Type Hinting
+
+To type hing a file it seems that we use the class `typing.io`:
+
+```python
+from typing import IO
+
+def describe_table(fout: IO[str], table: tuple) -> None:
+    """Print table description in a nice way for humans"""
+    (...)
+
+def main():
+    (...)
+    with open(db_name, "w") as ff:
+            (...)
+            describe_table(ff, table_desc)
+            (...)
+```
+
 # Env File in Bash
 
 Reading a `.env` file in Bash:
