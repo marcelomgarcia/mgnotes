@@ -6,10 +6,12 @@ bind-key C-a send-prefix
 # Options
 set -sg terminal-overrides ",*:RGB"  # true color support
 set -g escape-time 0  # disable delays on escape sequences
-set -g mouse on
 set -g renumber-windows on  # keep numbering sequential
 set -g repeat-time 1000  # increase "prefix-free" window
 set -g history-limit 20000 # Big history.
+
+# VI binging
+set -g mode-keys vi
 
 # Options: start indexes from 1
 set -g base-index 1
@@ -33,12 +35,17 @@ set -g window-status-current-style "#{?window_zoomed_flag,fg=yellow,fg=magenta,n
 set -g window-status-bell-style "fg=red,nobold"
 
 # Keybindings: split
-bind h split-window -h
-bind | split-window -h
-bind v split-window -v
-bind - split-window -v
+bind h split-window -h -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+bind v split-window -v -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
 
 # Keybindings: windows
 bind -n C-Tab next-window
 bind -n C-S-Tab previous-window
 
+# Usefull bindings
+bind C-a last-window
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf
