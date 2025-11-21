@@ -44,7 +44,9 @@ bind - split-window -v -c "#{pane_current_path}"
 bind -n C-Tab next-window
 bind -n C-S-Tab previous-window
 
-# Usefull bindings
+# Useful bindings
+bind / command-prompt -p "man>" "split-window -h -l 80 'exec man %%'"
+bind S command-prompt -p "ssh>" "new-window -n %1 'ssh %1'"
 bind C-a last-window
 
 # reload config file (change file location to your the tmux.conf you want to use)
