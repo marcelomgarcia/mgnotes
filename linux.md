@@ -61,7 +61,60 @@ umask 022
 mgarcia@valinor:~$
 ```
 
+# Rsync
+
+Synchronizing directories skipping the `.git` directory. The following command will only show the files that would have been synchronized (_dry-run_)
+
+```
+  rsync -avin /home/garcm0b/Work/irts/ .
+```
+
+Options breakdown:
+
+  - `-a`: archive mode (recursive, preserves permissions, timestamps, etc.)
+  - `-v`: verbose (shows file names)
+  - `-i`: itemize changes (shows detailed info about what would change)
+  - `-n`: dry-run (don't actually copy anything)
+
+The -i flag will show output like:
+
+  - `>f+++++++++` - new file that would be copied
+  - `>f.st......` - file exists but is newer/different in source
+  - `.f` - file is identical (won't be copied)
+
+If you want a simpler output showing only files that would be transferred, you can omit the -i:
+
+```
+  rsync -avn /home/garcm0b/Work/irts/ .
+```
+
+> Note: The trailing slash on the source path (/home/garcm0b/Work/irts/) means "copy the contents of this directory" rather than "copy the directory
+  itself".
+
+
+To skip the `.git` directory, add the `--exclude` option:
+
+```
+  rsync -avin --exclude='.git' /home/garcm0b/Work/irts/ .
+```
+
+Or with simpler output (without itemized changes):
+
+```
+  rsync -avn --exclude='.git' /home/garcm0b/Work/irts/ .
+```
+
+You can also exclude multiple items if needed:
+
+```
+  rsync -avin --exclude='.git' --exclude='__pycache__' --exclude='*.pyc' --exclude='venv' /home/garcm0b/Work/irts/ .
+```
+
+  The `--exclude='.git'` will skip the entire `.git` directory and all its contents.
+
 # Finding Files
+
+## Find Command
 
 Excluding a directory from the search of the `find` command:
 
@@ -71,6 +124,19 @@ root@lthlibprod:/home/sftpsap/patron_info# find . -path "./.snapshot" -prune -o 
 ./Organizations20241118081310.TXT
 (...)
 ```
+
+## FD Find
+
+Using a new version [fd find](https://github.com/sharkdp/fd)
+
+```
+garcm0b@KW20207:~$ fdfind --help
+A program to find entries in your filesystem
+
+Usage: fdfind [OPTIONS] [pattern] [path]...
+(...)
+```
+
 
 # SSH Tunnel
 
