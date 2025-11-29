@@ -1,0 +1,9 @@
+alias ll='ls -lh'
+alias lll='ll -tr'
+alias lls='ll -Sr'
+alias tnew='tmux new -s LOCAL'
+alias ta='tmux a -d'
+alias gs='git status --short'
+alias ga='git add'
+alias z=zoxide
+
