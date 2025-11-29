@@ -34,7 +34,7 @@ mgarcia@arda:~$ unzip JetBrainsMono-2.304.zip -d ~/.local/share/fonts
 mgarcia@arda:~$ sudo apt install gnome-shell-extension-manager -y
 ```
 
-# Build Essentias
+# Build Essentials
 
 Install development environment
 
@@ -220,14 +220,14 @@ bind -n M-Down select-pane -D
 bind ^ command-prompt -p "joinp>" "join-pane -s %1"
 bind / command-prompt -p "man>" "split-window -h -l 80 'exec man %%'"
 bind S command-prompt -p "ssh>" "new-window -n %1 'ssh %1'"
-bind m swapp -s 0 -t 1
+bind m swap -s 0 -t 1
 bind e attach -d
 bind C-a last-window
 
 # don't rename windows automatically
 set-option -g allow-rename off
 
-# VI binging
+# VI binding
 set -g mode-keys vi
 
 # Environment

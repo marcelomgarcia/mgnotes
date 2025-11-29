@@ -228,9 +228,9 @@ btrix                   Stopped           --               Ubuntu 24.04 LTS
 garcm0b@KW20207:~/Work/IRTSv2/updates$
 ```
 
-# Formating USB
+# Formatting USB
 
-Formating USB using `parted` to use [100% of the free space](https://ngelinux.com/how-to-create-full-size-one-partition-using-parted-command-in-linux/).
+Formatting USB using `parted` to use [100% of the free space](https://ngelinux.com/how-to-create-full-size-one-partition-using-parted-command-in-linux/).
 
 Locate the USB drive with `dmesg`
 

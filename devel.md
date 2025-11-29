@@ -54,7 +54,7 @@ Using the [GitHub CLI](https://cli.github.com/) to manage repositories from comm
 
 ## Listing Repositories
 
-Listing repoisitories with GH cli:
+Listing repositories with GH cli:
 
 ```
 mgarcia@PC-KL-26743:~/Work/clamdock$ gh repo list
@@ -180,7 +180,7 @@ Activate with: source venv/bin/activate
 garcm0b@KW20207:~/Work/etd_rag_pipeline$
 ```
 
-Activating the enviroment as a simple test:
+Activating the environment as a simple test:
 
 ```
 garcm0b@KW20207:~/Work/etd_rag_pipeline$ source venv/bin/activate
@@ -188,7 +188,7 @@ garcm0b@KW20207:~/Work/etd_rag_pipeline$ source venv/bin/activate
 garcm0b@KW20207:~/Work/etd_rag_pipeline$
 ```
 
-## Requiments
+## Requirements
 
 To add requirements to the virtual environment
 

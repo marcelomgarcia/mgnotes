@@ -98,7 +98,7 @@ title,director_id,year,country,url,screen_date,host,attendance
 (...)
 ```
 
-We save the output of the `SELECT` command to a file with the dot-command `.output movies.csv` and changed back to the screeen with `.output stdout.`
+We save the output of the `SELECT` command to a file with the dot-command `.output movies.csv` and changed back to the screen with `.output stdout.`
 
 ### Script
 
@@ -360,7 +360,7 @@ garcm0b@KW20207:~$
 
 ### Initializing a New Instance
 
-To initialize the new container with a MySQL dump file, start the container mount the directory with the dump file binded to the docker folder `/docker-entrypoint-initdb.d.` The installation of MySQL are mounted to another directory because we ingestion of the dump file was reaching the limit of Docker volume. The initialization of the container require extra parameters because the the dump file is very large (44GB) and the machine runnig Docker has high specs.
+To initialize the new container with a MySQL dump file, start the container mount the directory with the dump file bound to the docker folder `/docker-entrypoint-initdb.d.` The installation of MySQL are mounted to another directory because we ingestion of the dump file was reaching the limit of Docker volume. The initialization of the container require extra parameters because the the dump file is very large (44GB) and the machine running Docker has high specs.
 
 ```
 docker run \
