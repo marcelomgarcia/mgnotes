@@ -34,6 +34,20 @@ Windows **only**, with no MacOS/Linux collaborators, set it to `false`
 git config --global core.autocrlf false
 ```
 
+## Origin
+
+You can view all of your settings and where they are coming from using:
+
+```
+git config --list --show-origin
+```
+
+Change origin from ssh to https
+
+```
+git remote set-url origin https://gitlab.kaust.edu.sa/garcm0b/libnova_api_eval.git
+```
+
 # GitHub CLI
 
 Using the [GitHub CLI](https://cli.github.com/) to manage repositories from command line. 

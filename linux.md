@@ -31,7 +31,6 @@ Cleaning apt cache is important to [free up space and remove old package files](
 
 Inspecting the `/var/cache/apt/archives` directory can help you understand how much space is being used by cached packages:
 
-
 ```bash
 root@lthlibprod:/var/cache/apt/archives# ls -1 | wc -l
 178
@@ -49,6 +48,20 @@ root@lthlibprod:/var/cache/apt/archives # Checking the size of the directory aga
 root@lthlibprod:/var/cache/apt/archives# du -sh .
 32K     .
 root@lthlibprod:/var/cache/apt/archives# 
+```
+
+# LDAP
+
+Searching the LDAP
+
+```
+# Initialize Kerberos cache
+joe@lthlibmig:~$ kinit -a joe
+Password for joed@DOMAIN.EDU:
+# Search LDAP
+joe@lthlibmig:~$ ldapsearch -H ldap://my.ldap.server -LLL -b "DC=KK,DC=EDU,DC=SS" cn=joe
+SASL/GSS-SPNEGO authentication started
+(...)
 ```
 
 # Umask
@@ -137,6 +150,17 @@ Usage: fdfind [OPTIONS] [pattern] [path]...
 (...)
 ```
 
+# OpenSSL
+
+Generate random passwords with OpenSSL. Use `hex` for a hexadecimal or `base64` for alphanumeric pseudo-random passwords
+
+```
+mgarcia@valinor:~$ openssl rand -base64 16
+dAq2FeDkBNsO+O/AMgA3+A==
+mgarcia@valinor:~$ openssl rand -hex 16
+a35abff0cfab0281a191658b0d046293
+mgarcia@valinor:~$ 
+```
 
 # SSH Tunnel
 
@@ -150,6 +174,27 @@ Reading table information for completion of table and column names
 (...)
 
 MySQL [test_irts]>
+```
+
+# Tar
+
+Removing a file from inside a `tar` file
+
+```
+a-garcm0b@lthlibprod:/tmp$ tar tvf cert_kaust.tar
+drwxr-xr-x root/root         0 2024-04-21 14:18 certs/
+-rw-r--r-- root/root      4240 2024-04-15 15:37 certs/ssl.pem_before_2024-04-21
+-r-------- root/root      1675 2022-06-21 15:54 certs/ssl.key_before_2024-04-21
+-r-------- root/root      1675 2023-05-31 15:21 certs/ssl.key
+-rw-r--r-- root/root      4240 2024-04-15 15:41 certs/ssl.pem
+a-garcm0b@lthlibprod:/tmp$
+a-garcm0b@lthlibprod:/tmp$ sudo tar --delete --file cert_kaust.tar certs/ssl.pem_before_2024-04-21
+a-garcm0b@lthlibprod:/tmp$ sudo tar --delete --file cert_kaust.tar certs/ssl.key_before_2024-04-21
+a-garcm0b@lthlibprod:/tmp$ tar tvf cert_kaust.tar
+drwxr-xr-x root/root         0 2024-04-21 14:18 certs/
+-r-------- root/root      1675 2023-05-31 15:21 certs/ssl.key
+-rw-r--r-- root/root      4240 2024-04-15 15:41 certs/ssl.pem
+a-garcm0b@lthlibprod:/tmp$
 ```
 
 # Canonical Multipass
