@@ -1,6 +1,14 @@
 Linux Administration
 ===================
 
+# Tools
+
+| Tool | Sample |
+| ---- | ------ |
+| [zoxide](https://github.com/ajeetdsouza/zoxide) (`z`) | A smart `cd` command |
+| [fzf](https://github.com/junegunn/fzf) | A fuzzy finder. A much better and faster `find` command |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | A much better version of `grep` command |
+
 # Firewall 
 
 Configuring the `ufw` firewall [to allow DNS](https://www.cyberciti.biz/faq/howto-open-dns-port-53-using-ufw-ubuntu-debian/) traffic:
