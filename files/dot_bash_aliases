@@ -5,5 +5,8 @@ alias tnew='tmux new -s LOCAL'
 alias ta='tmux a -d'
 alias gs='git status --short'
 alias ga='git add'
+alias gc='git commit'
+alias gp='git pull'
+alias gu='git push'
 alias z=zoxide
 
