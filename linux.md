@@ -186,6 +186,18 @@ MySQL [test_irts]>
 
 # Tar
 
+Extracting a `.tar.gz` file to a specific directory:
+
+```bash
+tar -xzf archive.tar.gz -C /path/to/destination
+```
+
+Extracting a single `.gz` file to a specific directory:
+
+```bash
+gunzip -c file.gz > /path/to/destination/file
+```
+
 Removing a file from inside a `tar` file
 
 ```
