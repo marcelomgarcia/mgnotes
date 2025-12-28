@@ -184,18 +184,22 @@ Reading table information for completion of table and column names
 MySQL [test_irts]>
 ```
 
+# Gzip
+
+Extracting a single `.gz` file (like a `mysqldump` output) to a specific directory:
+
+```bash
+gunzip -c backup.sql.gz > /path/to/destination/backup.sql
+```
+
+Note: Use `-k` if you want to keep the original file when decompressing in place: `gunzip -k file.gz`.
+
 # Tar
 
 Extracting a `.tar.gz` file to a specific directory:
 
 ```bash
 tar -xzf archive.tar.gz -C /path/to/destination
-```
-
-Extracting a single `.gz` file to a specific directory:
-
-```bash
-gunzip -c file.gz > /path/to/destination/file
 ```
 
 Removing a file from inside a `tar` file
