@@ -310,3 +310,31 @@ logout
 
 
 Then format the USB on Windows.
+
+# Zombie Processes
+
+Zombie processes (defunct processes) are processes that have completed execution but still have an entry in the process table.
+
+## Finding Zombie Processes
+
+Using `ps`:
+
+```bash
+ps aux | awk '$8 ~ /Z/'
+```
+
+The `STAT` column (the 8th column) will show `Z` for zombie processes.
+
+Alternatively, to just get a count:
+
+```bash
+ps aux | awk '$8 ~ /Z/' | wc -l
+```
+
+Using `top`:
+
+The summary line at the top of the `top` command displays the number of zombie processes:
+
+```text
+Tasks: 235 total,   1 running, 234 sleeping,   0 stopped,   0 zombie
+```
