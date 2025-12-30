@@ -42,6 +42,14 @@ You can view all of your settings and where they are coming from using:
 git config --list --show-origin
 ```
 
+To check just for the remote origin:
+
+```
+$ git config --get remote.origin.url
+https://github.com/marcelomgarcia/export_libsafe.git
+$
+```
+
 Change origin from ssh to https
 
 ```
