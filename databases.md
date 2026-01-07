@@ -174,6 +174,16 @@ rowID   added   sourceData
 1       2024-03-26 05:00:05     {"30001599":{"orgID":30001599,"name":"911 & CCC","startDate":"2017-07-01","shortName":"9111CCC","parentOrgID":"30000106","type":"officeunit","visibility":"BACKEND"},"30001379":{"orgID":30001379,"name":"Academic & Admin Facilities Maintenance","startDate"(...)
 ```
 
+Another option
+
+```
+garcm0b@KW20207:~/Work/docker_irts_db$ mysql -h localhost --protocol=tcp --port=3336 -u root -p prod_irts \
+> -e "select rowID, sourceData from sourceData where rowID=3717029" > ~/Documents/sourceData_rowID.txt
+Enter password:
+garcm0b@KW20207:~/Work/docker_irts_db
+```
+
+
 ## Database Size
 
 Printing the size of the databases in MB:
