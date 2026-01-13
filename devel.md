@@ -209,3 +209,28 @@ Installed 17 packages in 40ms
  + charset-normalizer==3.4.4
  (...)
 ```
+
+## Package Upgrade
+
+Upgrading packages in `uv`:
+
+It's possible to upgrade only the _lock_ file. In the following case, it updates the _lock_ file, but **it will not** update the virtual environment.
+
+```
+uv lock --upgrade-package marimo
+```
+
+To update the virtual environment:
+
+```
+uv sync --upgrade-package marimo
+```
+
+When used alone, the `sync` option will also update the _lock_ file.
+
+To upgrade all packages:
+
+```
+uv lock --upgrade
+uv sync --upgrade
+```
