@@ -354,3 +354,45 @@ The summary line at the top of the `top` command displays the number of zombie p
 ```text
 Tasks: 235 total,   1 running, 234 sleeping,   0 stopped,   0 zombie
 ```
+
+# Samba Configuration (Ubuntu 24.04 LTS)
+
+### Phase 1: Installation & Preparation
+1.  **Update your system:** `sudo apt update && sudo apt upgrade -y`
+2.  **Install Samba:** `sudo apt install samba -y`
+3.  **Backup the original config:** `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak`
+4.  **Create the shared directory:** 
+    ```bash
+    sudo mkdir -p /srv/samba/shared
+    sudo chown nobody:nogroup /srv/samba/shared
+    sudo chmod 2775 /srv/samba/shared
+    ```
+
+### Phase 2: Configuration
+Edit the `/etc/samba/smb.conf` file to define your share. Add this to the end of the file:
+```ini
+[PublicShare]
+   comment = Ubuntu Shared Folder
+   path = /srv/samba/shared
+   browsable = yes
+   guest ok = yes
+   read only = no
+   create mask = 0775
+   directory mask = 0775
+   force user = nobody
+```
+
+### Phase 3: Firewall Setup (`ufw`)
+Samba requires specific ports (137, 138/udp and 139, 445/tcp). `ufw` has a built-in profile for this:
+1.  **Allow Samba traffic:** `sudo ufw allow Samba`
+2.  **Verify status:** `sudo ufw status verbose`
+
+### Phase 4: Service Management
+1.  **Restart services:** `sudo systemctl restart smbd nmbd`
+2.  **Enable on boot:** `sudo systemctl enable smbd nmbd`
+
+### (Optional) User-Authenticated Share
+If you want a private share instead of a guest one:
+1.  **Add a system user:** `sudo adduser smbuser`
+2.  **Assign a Samba password:** `sudo smbpasswd -a smbuser`
+3.  **Update `smb.conf`:** Set `guest ok = no` and `valid users = smbuser` in your share definition.
