@@ -1,0 +1,53 @@
+# remap prefix from 'C-b' to 'C-a'
+unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix
+
+# Options
+set -sg terminal-overrides ",*:RGB"  # true color support
+set -g escape-time 0  # disable delays on escape sequences
+set -g renumber-windows on  # keep numbering sequential
+set -g repeat-time 1000  # increase "prefix-free" window
+set -g history-limit 20000 # Big history.
+
+# VI binging
+set -g mode-keys vi
+
+# Options: start indexes from 1
+set -g base-index 1
+set -g pane-base-index 1
+
+# Theme: borders
+set -g pane-border-lines simple
+set -g pane-border-style fg=black,bright
+set -g pane-active-border-style fg=magenta
+
+# Theme: status
+set -g status-style bg=default,fg=black,bright
+set -g status-left ""
+set -g status-right "#[fg=black,bright]#S"
+
+# Theme: status (windows)
+set -g window-status-format "●"
+set -g window-status-current-format "●"
+
+set -g window-status-current-style "#{?window_zoomed_flag,fg=yellow,fg=magenta,nobold}"
+set -g window-status-bell-style "fg=red,nobold"
+
+# Keybindings: split
+bind h split-window -h -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+bind v split-window -v -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+
+# Keybindings: windows
+bind -n C-Tab next-window
+bind -n C-S-Tab previous-window
+
+# Useful bindings
+bind / command-prompt -p "man>" "split-window -h -l 80 'exec man %%'"
+bind S command-prompt -p "ssh>" "new-window -n %1 'ssh %1'"
+bind C-a last-window
+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf
