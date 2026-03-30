@@ -1,6 +1,12 @@
 Development
 ===========
 
+# Python in Docker
+
+Discussion if one shoud stop putting `ENV PYTHONDONTWRITEBYTECODE 1` into theirs `Dockerfile`:
+
+[https://aleksac.me/blog/dont-use-pythondontwritebytecode-in-your-dockerfiles/](https://aleksac.me/blog/dont-use-pythondontwritebytecode-in-your-dockerfiles/)
+
 # Git Config
 
 [Initial config](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
