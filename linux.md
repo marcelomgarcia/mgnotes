@@ -9,6 +9,14 @@ Linux Administration
 | [fzf](https://github.com/junegunn/fzf) | A fuzzy finder. A much better and faster `find` command |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | A much better version of `grep` command |
 
+# WSL
+
+WSL configurations tips.
+
+## VPN
+
+WSL has [no conectivity](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#wsl-has-no-network-connectivity-once-connected-to-a-vpn) when to a VPN.
+
 # Firewall 
 
 Configuring the `ufw` firewall [to allow DNS](https://www.cyberciti.biz/faq/howto-open-dns-port-53-using-ufw-ubuntu-debian/) traffic:
