@@ -252,7 +252,19 @@ btrix                   Stopped           --               Ubuntu 24.04 LTS
 garcm0b@KW20207:~/Work/IRTSv2/updates$
 ```
 
-# Formatting USB
+# Working with USB
+
+## Burning an ISO Image
+
+The command to [burn an ISO image](https://linuxvox.com/blog/dd-linux-iso/) to a USB:
+
+```
+sudo dd if=<iso image> of=/dev/sda status=progress bs=4MB oflag=sync
+```
+
+The option `sync` in `oflag` is to write data synchronously.
+
+## Formatting USB
 
 Formatting USB using `parted` to use [100% of the free space](https://ngelinux.com/how-to-create-full-size-one-partition-using-parted-command-in-linux/).
 
