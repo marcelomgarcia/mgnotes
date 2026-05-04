@@ -1,0 +1,9 @@
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+
+Host dev
+    HostName kw20207.kaust.edu.sa
+    User garcm0b
+
