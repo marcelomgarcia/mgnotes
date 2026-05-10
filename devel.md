@@ -240,3 +240,28 @@ To upgrade all packages:
 uv lock --upgrade
 uv sync --upgrade
 ```
+
+## Clean Cache
+
+UV caches can become quite big:
+
+```
+root@KW20207:/home/garcm0b/.cache/uv# du -h --max-depth 1 . | sort -h
+172K    ./interpreter-v4
+2.2M    ./builds-v0
+6.1M    ./wheels-v5
+6.3M    ./sdists-v9
+103M    ./simple-v18
+23G     ./archive-v0
+24G     .
+root@KW20207:/home/garcm0b/.cache/uv#
+```
+
+And to clean the cache use the comman `uv` with option to clean the cache:
+
+```
+garcm0b@KW20207:~$ uv cache clean
+Clearing cache at: .cache/uv
+Removed 134100 files (22.7GiB)
+garcm0b@KW20207:~$
+```
